@@ -1,26 +1,8 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `wrangler dev src/index.ts` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `wrangler deploy src/index.ts --name my-worker` to deploy your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { createPlaceholder } from "./createPlaceholder";
 
-export interface Env {
-	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-	// MY_KV_NAMESPACE: KVNamespace;
-	//
-	// Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
-	// MY_DURABLE_OBJECT: DurableObjectNamespace;
-	//
-	// Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
-	// MY_BUCKET: R2Bucket;
-	//
-	// Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
-	// MY_SERVICE: Fetcher;
-}
+export interface Env {}
+
+const doctype = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`;
 
 export default {
 	async fetch(
@@ -28,6 +10,18 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<Response> {
-		return new Response("Hello World!");
+    const url = new URL(request.url)
+    const name = decodeURIComponent(url.pathname.split("/")[1])
+
+    const svg = await createPlaceholder({
+      name,
+    })
+
+    const headers = new Headers()
+    headers.set("Content-Type", "image/svg+xml")
+
+		return new Response([doctype, svg].join("\n"), {
+      headers,
+    });
 	},
 };

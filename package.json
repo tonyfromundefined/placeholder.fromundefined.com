@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231016.0",
+    "@types/react": "^18.2.31",
     "typescript": "^5.2.2",
     "wrangler": "3.14.0"
   },
@@ -11,5 +12,11 @@
     "start": "wrangler dev",
     "deploy": "wrangler deploy"
   },
-  "packageManager": "yarn@4.0.0"
+  "packageManager": "yarn@4.0.0",
+  "dependencies": {
+    "open-color": "^1.9.1",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "satori": "^0.10.9"
+  }
 }
