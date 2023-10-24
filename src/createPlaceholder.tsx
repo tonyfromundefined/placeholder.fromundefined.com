@@ -1,16 +1,15 @@
 import type OpenColor from "open-color";
 import oc from "open-color";
 import { rgba } from "polished";
-import React from 'react'
+import React from "react";
 import satori from "satori";
+import { hash } from "./hash";
 
-import { convertBase64StringToArrayBuffer } from "./lib/convertBase64StringToArrayBuffer";
-import { fontDataBase64 } from "./lib/fontDataBase64";
-import { hash } from "./lib/hash";
-
-const fontData = convertBase64StringToArrayBuffer(fontDataBase64);
+const PRETENDARD_MEDIUM_OTF = "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/packages/pretendard/dist/public/static/Pretendard-Medium.otf"
 
 export async function createPlaceholder({ name }: { name: string }) {
+  const fontDataResponse = await fetch(PRETENDARD_MEDIUM_OTF);
+
   const colorNames = Object.keys(oc)
     .filter((k) => k !== "white")
     .filter((k) => k !== "black");
@@ -44,7 +43,7 @@ export async function createPlaceholder({ name }: { name: string }) {
       height: 48,
       fonts: [
         {
-          data: fontData,
+          data: await fontDataResponse.arrayBuffer(),
           name: "Pretendard",
           style: "normal",
           weight: 400,
