@@ -8,11 +8,7 @@ const DAY = 60 * 60 * 24;
 const cache = caches.default;
 
 export default {
-	async fetch(
-		request: Request,
-		env: Env,
-		ctx: ExecutionContext
-	): Promise<Response> {
+	async fetch(request: Request): Promise<Response> {
     const hit = await cache.match(request);
 
     if (hit) {
@@ -26,16 +22,18 @@ export default {
       name,
     });
 
+    const body = [DOCTYPE, svg].join("\n");
+
     const headers = new Headers();
     headers.set("Content-Type", "image/svg+xml");
     headers.set("Cache-Control", `public, max-age=${7 * DAY}`);
 
-    const response = new Response([DOCTYPE, svg].join("\n"), {
+    await cache.put(request, new Response(body, {
+      headers,
+    }));
+
+		return new Response(body, {
       headers,
     });
-
-    await cache.put(request, response);
-
-		return new Response(response.body, response);
 	},
 };

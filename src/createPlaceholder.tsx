@@ -26,7 +26,7 @@ export async function createPlaceholder({ name }: { name: string }) {
         justifyContent: "center",
         width: "100%",
         height: "100%",
-        backgroundColor: rgba(colorValue, 0.2),
+        backgroundColor: rgba(colorValue, 0.25),
       }}
     >
       <div
