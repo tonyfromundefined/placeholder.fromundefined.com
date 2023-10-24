@@ -14,7 +14,8 @@ export async function createPlaceholder({ name }: { name: string }) {
     .filter((k) => k !== "white")
     .filter((k) => k !== "black");
   const colorName = colorNames[hash(name) % colorNames.length];
-  const colorValue = oc[colorName as keyof OpenColor][9];
+  const bgColorValue = oc[colorName as keyof OpenColor][6];
+  const textColorValue = oc[colorName as keyof OpenColor][9];
 
   const firstChar = name[0]?.toUpperCase() ?? "";
 
@@ -26,13 +27,13 @@ export async function createPlaceholder({ name }: { name: string }) {
         justifyContent: "center",
         width: "100%",
         height: "100%",
-        backgroundColor: rgba(colorValue, 0.25),
+        backgroundColor: rgba(bgColorValue, 0.3),
       }}
     >
       <div
         style={{
           fontSize: "24px",
-          color: colorValue,
+          color: textColorValue,
         }}
       >
         {firstChar}
