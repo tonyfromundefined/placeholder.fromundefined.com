@@ -13,13 +13,22 @@ Default icon generator using the [Open Color](https://yeun.github.io/open-color)
 
 ### Basic
 
+Enter the string needed to express the icon as a path parameter.
+
+```
+https://placeholder.fromundefined.com/[string]
+```
+
+
 ```html
 <img src="https://placeholder.fromundefined.com/hello">
 ```
 <img src="https://placeholder.fromundefined.com/hello" style="border-radius: .125rem;">
 
 
-### `?theme=dark`
+### Dark Mode
+
+Append `?theme=dark` param in url
 
 ```html
 <img src="https://placeholder.fromundefined.com/hello?theme=dark">
@@ -31,6 +40,8 @@ Default icon generator using the [Open Color](https://yeun.github.io/open-color)
 
 
 ### Dark Mode Icon without JavaScript
+
+Using `<picture>` tag with `prefers-color-scheme`
 
 ```html
 <picture>
