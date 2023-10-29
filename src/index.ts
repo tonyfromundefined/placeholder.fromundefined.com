@@ -20,6 +20,7 @@ export default {
 
     const svg = await createPlaceholder({
       name,
+      theme: url.searchParams.get("theme") === 'dark' ? 'dark' : 'light',
     });
 
     const body = [DOCTYPE, svg].join("\n");
@@ -27,6 +28,9 @@ export default {
     const headers = new Headers();
     headers.set("Content-Type", "image/svg+xml");
     headers.set("Cache-Control", `public, max-age=${7 * DAY}`);
+
+    // CORS
+    headers.set("Access-Control-Allow-Origin", "*");
 
     await cache.put(request, new Response(body, {
       headers,

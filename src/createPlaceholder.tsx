@@ -7,15 +7,15 @@ import { hash } from "./hash";
 
 const PRETENDARD_MEDIUM_OTF = "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/packages/pretendard/dist/public/static/Pretendard-Medium.otf"
 
-export async function createPlaceholder({ name }: { name: string }) {
+export async function createPlaceholder({ name, theme }: { name: string, theme: 'light' | 'dark' }) {
   const fontDataResponse = await fetch(PRETENDARD_MEDIUM_OTF);
 
   const colorNames = Object.keys(oc)
     .filter((k) => k !== "white")
     .filter((k) => k !== "black");
   const colorName = colorNames[hash(name) % colorNames.length];
-  const bgColorValue = oc[colorName as keyof OpenColor][6];
-  const textColorValue = oc[colorName as keyof OpenColor][9];
+  const bgColorValue = oc[colorName as keyof OpenColor][5];
+  const textColorValue = theme === 'light' ? oc[colorName as keyof OpenColor][9] : oc[colorName as keyof OpenColor][2];
 
   const firstChar = name[0]?.toUpperCase() ?? "";
 
@@ -27,7 +27,7 @@ export async function createPlaceholder({ name }: { name: string }) {
         justifyContent: "center",
         width: "100%",
         height: "100%",
-        backgroundColor: rgba(bgColorValue, 0.3),
+        backgroundColor: rgba(bgColorValue, theme === 'light' ? 0.2 : 0.4),
       }}
     >
       <div
