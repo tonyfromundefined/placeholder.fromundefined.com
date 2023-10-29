@@ -1,4 +1,4 @@
-# 🌈 Default Icon Generator
+# 🌈 Placeholder
 
 > by `fromundefined.com`
 
