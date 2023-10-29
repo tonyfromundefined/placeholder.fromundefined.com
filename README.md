@@ -8,7 +8,7 @@ Default icon generator using the [Open Color](https://yeun.github.io/open-color)
 - Inserts the initials of the given string into the icon.
 - Supports dark mode
 - Supports Hangul (Korean Character)
-- Caching with CloudFlare CDN (Cloudflare Workers + Cache API)
+- Caching with Cloudflare CDN (Cloudflare Workers + Cache API)
 
 ## How to use
 
