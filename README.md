@@ -34,9 +34,7 @@ Append `?theme=dark` param in url
 <img src="https://placeholder.fromundefined.com/hello?theme=dark">
 ```
 
-<div style="background-color: #212529; padding: 1rem; display: flex; border-radius: .125rem;">
-  <img src="https://placeholder.fromundefined.com/hello?theme=dark" style="border-radius: .125rem;">
-</div>
+<img src="./README.dark.svg">
 
 
 ### Dark Mode Icon without JavaScript
