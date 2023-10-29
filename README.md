@@ -34,7 +34,7 @@ Append `?theme=dark` param in url
 <img src="https://placeholder.fromundefined.com/hello?theme=dark">
 ```
 
-<img src="./README.dark.svg">
+<img src="./dark-icon-example.svg">
 
 
 ### Dark Mode Icon without JavaScript
