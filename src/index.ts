@@ -27,7 +27,7 @@ export default {
 
     const headers = new Headers();
     headers.set("Content-Type", "image/svg+xml");
-    headers.set("Cache-Control", `public, max-age=${7 * DAY}`);
+    headers.set("Cache-Control", `public, max-age=${21 * DAY}`);
 
     // CORS
     headers.set("Access-Control-Allow-Origin", "*");
